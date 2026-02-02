@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using EntityLayer.Concrete;
@@ -43,7 +43,7 @@ builder.Services.AddScoped<IDestinationService, DestinationManager>();
 builder.Services.AddScoped<IDestinationDal, EfDestinationDal>();
 
 builder.Services.AddAutoMapper(typeof(Program));
-builder.Services.AddTransient<IValidator<AnnouncementAddDTO>, AnnouncementValidator>();
+builder.Services.CustomerValidators();
 builder.Services.AddControllersWithViews().AddFluentValidation();
 builder.Services.AddControllersWithViews(config =>
 {
