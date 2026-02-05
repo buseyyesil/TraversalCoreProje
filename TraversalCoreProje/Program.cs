@@ -9,10 +9,10 @@ using BusinessLayer.Concrete;
 using DataAccessLayer.Abstract;
 using DataAccessLayer.EntityFramework;
 using BusinessLayer.Container;
-using FluentValidation;
-using DTOLayer.DTOs.AnnouncementDTOs;
-using BusinessLayer.ValidationRules.AnnouncementValidationRules;
+
 using FluentValidation.AspNetCore;
+using TraversalCoreProje.CQRS.Handlers.DestinationHandlers;
+using MediatR;
 
 
 
@@ -38,6 +38,14 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.SlidingExpiration = true;
 });
 builder.Services.ContainerDependencies();
+
+builder.Services.AddScoped<GetAllDestinationQueryHandler>();
+builder.Services.AddScoped<GetDestinationByIDQueryHandler>();
+builder.Services.AddScoped<CreateDestinationCommandHandler>();
+builder.Services.AddScoped<RemoveDestinationCommandHandler>();
+builder.Services.AddScoped<UpdateDestinationCommandHandler>();
+
+builder.Services.AddMediatR(typeof(Program));
 
 builder.Services.AddScoped<IDestinationService, DestinationManager>();
 builder.Services.AddScoped<IDestinationDal, EfDestinationDal>();
