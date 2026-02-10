@@ -25,7 +25,7 @@ namespace BusinessLayer.Concrete
 
         public void TDelete(Comment t)
         {
-            _commentDal.Delete(t);  
+            _commentDal.Delete(t);
         }
 
         public Comment TGetByID(int id)
@@ -37,10 +37,12 @@ namespace BusinessLayer.Concrete
         {
             return _commentDal.GetList();
         }
+
         public List<Comment> TGetDestinationById(int id)
         {
             return _commentDal.GetListByFilter(x => x.DestinationID == id);
         }
+
         public void TUpdate(Comment t)
         {
             throw new NotImplementedException();
@@ -49,6 +51,11 @@ namespace BusinessLayer.Concrete
         public List<Comment> TGetListCommentWithDestination()
         {
             return _commentDal.GetListCommentWithDestination();
+        }
+
+        public List<Comment> TGetListCommentWithDestinationAndUser(int id)
+        {
+            return _commentDal.GetListCommentWithDestinationAndUser(id);
         }
     }
 }

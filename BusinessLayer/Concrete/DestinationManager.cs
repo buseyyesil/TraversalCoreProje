@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    public class DestinationManager:IDestinationService
-
+    public class DestinationManager : IDestinationService
     {
         IDestinationDal _destinationDal;
 
@@ -21,12 +20,12 @@ namespace BusinessLayer.Concrete
 
         public void TAdd(Destination t)
         {
-           _destinationDal.Insert(t);
+            _destinationDal.Insert(t);
         }
 
         public void TDelete(Destination t)
         {
-           _destinationDal.Delete(t);
+            _destinationDal.Delete(t);
         }
 
         public Destination TGetByID(int id)
@@ -34,9 +33,19 @@ namespace BusinessLayer.Concrete
             return _destinationDal.GetByID(id);
         }
 
+        public Destination TGetDestinationWithGuide(int id)
+        {
+            return _destinationDal.GetDestinationWithGuide(id);
+        }
+
+        public List<Destination> TGetLast4Destinations()
+        {
+            return _destinationDal.GetLast4Destinations();
+        }
+
         public List<Destination> TGetList()
         {
-          return _destinationDal.GetList();
+            return _destinationDal.GetList();
         }
 
         public void TUpdate(Destination t)

@@ -83,6 +83,26 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("About2s");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.Account", b =>
+                {
+                    b.Property<int>("AccountID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AccountID"));
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AccountID");
+
+                    b.ToTable("Accounts");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Announcement", b =>
                 {
                     b.Property<int>("AnnouncementID")
@@ -160,9 +180,11 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Gender")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -172,6 +194,7 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
@@ -195,6 +218,7 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -225,6 +249,9 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentID"));
 
+                    b.Property<int?>("AppUserID")
+                        .HasColumnType("int");
+
                     b.Property<string>("CommentContent")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -243,6 +270,8 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("CommentID");
+
+                    b.HasIndex("AppUserID");
 
                     b.HasIndex("DestinationID");
 
@@ -336,6 +365,7 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CoverImage")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Date")
@@ -357,6 +387,9 @@ namespace DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("GuideID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -372,6 +405,8 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("DestinationID");
+
+                    b.HasIndex("GuideID");
 
                     b.ToTable("Destinations");
                 });
@@ -441,6 +476,14 @@ namespace DataAccessLayer.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GuideID"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GuideListImage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -677,13 +720,28 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.Comment", b =>
                 {
+                    b.HasOne("EntityLayer.Concrete.AppUser", "AppUser")
+                        .WithMany("Comments")
+                        .HasForeignKey("AppUserID");
+
                     b.HasOne("EntityLayer.Concrete.Destination", "Destination")
                         .WithMany("Comments")
                         .HasForeignKey("DestinationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("AppUser");
+
                     b.Navigation("Destination");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Destination", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Guide", "Guide")
+                        .WithMany("Destinations")
+                        .HasForeignKey("GuideID");
+
+                    b.Navigation("Guide");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Reservation", b =>
@@ -758,6 +816,8 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.AppUser", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("Reservations");
                 });
 
@@ -766,6 +826,11 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Reservations");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Guide", b =>
+                {
+                    b.Navigation("Destinations");
                 });
 #pragma warning restore 612, 618
         }

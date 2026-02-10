@@ -6,7 +6,7 @@ using TraversalCoreProje.CQRS.Results.GuideResults;
 
 namespace TraversalCoreProje.CQRS.Handlers.GuideHandlers
 {
-    public class GetAlllGuideQueryHandler:IRequestHandler<GetAllGuideQuery, List<GetAlllGuideQueryResult>>
+    public class GetAlllGuideQueryHandler:IRequestHandler<GetAllGuideQuery, List<GetAllGuideQueryResult>>
     {
         private readonly Context _context;
         public GetAlllGuideQueryHandler(Context context)
@@ -14,9 +14,9 @@ namespace TraversalCoreProje.CQRS.Handlers.GuideHandlers
             _context = context;
         }
 
-        public async Task<List<GetAlllGuideQueryResult>> Handle(GetAllGuideQuery request, CancellationToken cancellationToken)
+        public async Task<List<GetAllGuideQueryResult>> Handle(GetAllGuideQuery request, CancellationToken cancellationToken)
         {
-            return await _context.Guides.Select(x => new GetAlllGuideQueryResult
+            return await _context.Guides.Select(x => new GetAllGuideQueryResult
             {
                 GuideID = x.GuideID,
                 Description = x.Description,
