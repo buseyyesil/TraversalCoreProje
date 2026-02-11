@@ -19,10 +19,9 @@ builder.Services.AddDbContext<Context>();
 builder.Services.AddIdentity<AppUser, AppRole>()
     .AddEntityFrameworkStores<Context>()
     .AddErrorDescriber<CustomIdentityValidator>()
-    .AddEntityFrameworkStores<Context>();
+    .AddDefaultTokenProviders();
 
 builder.Services.AddHttpClient();
-
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Login/SignIn";
@@ -34,22 +33,17 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 builder.Services.ContainerDependencies();
-
 builder.Services.AddScoped<GetAllDestinationQueryHandler>();
 builder.Services.AddScoped<GetDestinationByIDQueryHandler>();
 builder.Services.AddScoped<CreateDestinationCommandHandler>();
 builder.Services.AddScoped<RemoveDestinationCommandHandler>();
 builder.Services.AddScoped<UpdateDestinationCommandHandler>();
 builder.Services.AddMediatR(typeof(Program));
-
 builder.Services.AddScoped<IDestinationService, DestinationManager>();
 builder.Services.AddScoped<IDestinationDal, EfDestinationDal>();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.CustomerValidators();
-
-// Localization eklendi
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
-
 builder.Services.AddControllersWithViews(config =>
 {
     var policy = new AuthorizationPolicyBuilder()
