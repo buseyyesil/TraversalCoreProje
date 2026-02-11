@@ -28,7 +28,7 @@ namespace TraversalCoreProje.Areas.Member.Controllers
         public async Task<IActionResult> MyCurrentReservation()
         {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
-            var valuesList = reservationManager.GetListWithReservationByWaitAccepted(values.Id);
+            var valuesList = reservationManager.GetListWithReservationByAccepted(values.Id);
             return View(valuesList);
         }
         public async Task<IActionResult> MyOldReservation()
