@@ -1,6 +1,4 @@
 
-﻿# 🌍 Traversal Travel Reservation System
-
 <p align="center">
   <img src="screenshots/banner.png" alt="Traversal Banner" width="100%"/>
 </p>
