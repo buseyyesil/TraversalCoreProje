@@ -1,4 +1,4 @@
-﻿🌍 Traversal Travel Reservation System
+🌍 Traversal Travel Reservation System
 <p align="center">
   <img src="https://img.shields.io/badge/.NET-6.0-512BD4?style=for-the-badge&logo=dotnet"/>
   <img src="https://img.shields.io/badge/ASP.NET_Core-MVC-blue?style=for-the-badge&logo=microsoft"/>
@@ -166,22 +166,56 @@ TraversalCoreProje/
 ✅ Custom 404 error page
 ✅ ViewComponent architecture for modular UI
 ---
-🔧 Technologies Used
-Technology	Version	Purpose
-ASP.NET Core MVC	6.0	Web framework
-Entity Framework Core	6.0	ORM
-ASP.NET Core Identity	6.0	Authentication
-SignalR	6.0	Real-time communication
-MediatR	11.0	CQRS pipeline
-AutoMapper	12.0	Object mapping
-FluentValidation	11.3	Form validation
-ClosedXML	0.105	Excel reporting
-EPPlus	6.0	Excel reporting
-iTextSharp	LGPLv2	PDF reporting
-MailKit	4.0	Email sending
-Newtonsoft.Json	-	JSON processing
-Bootstrap	5	UI framework
-Google Charts	-	Chart visualization
-MSSQL Server	-	Main database
-PostgreSQL	-	SignalR database
+
+## 🗄️ Database Schema
+
+```
+AppUser          → Identity user table
+AppRole          → Identity role table
+Destination      → Travel destinations
+Guide            → Tour guides
+Reservation      → Reservations
+Comment          → Destination comments
+Announcement     → Announcements
+ContactUs        → Contact messages
+Account          → Bank accounts (UoW example)
+About / About2   → About content
+Feature / Feature2 → Features
+NewsLetter       → Subscribers
+Testimonial      → Customer reviews
+SubAbout         → Sub about
+Contact          → Contact information
+```
+
 ---
+
+## 🚀 Installation
+
+### Prerequisites
+- .NET 6.0 SDK
+- SQL Server
+- PostgreSQL (for SignalR API)
+- Visual Studio 2022
+
+
+## 📸 Screenshots Folder Structure
+
+```
+screenshots/
+├── banner.png
+├── Ekran görüntüsü 2026-05-17 160448.png   → Homepage
+├── Ekran görüntüsü 2026-05-17 160522.png   → Homepage Slider
+├── Ekran görüntüsü 2026-05-17 160546.png   → Destination List
+├── Ekran görüntüsü 2026-05-17 160556.png   → Destination List 2
+├── Ekran görüntüsü 2026-05-17 160609.png   → Tour Routes Gallery
+├── Ekran görüntüsü 2026-05-17 160642.png   → Testimonials & Footer
+├── Ekran görüntüsü 2026-05-17 160720.png   → Member Panel - Latest Routes
+├── Ekran görüntüsü 2026-05-17 160823.png   → Guide Detail Page
+├── Ekran görüntüsü 2026-05-17 160838.png   → Comments Section
+├── Ekran görüntüsü 2026-05-17 160851.png   → Register Page
+├── Ekran görüntüsü 2026-05-17 161312.png   → Login Page
+├── Ekran görüntüsü 2026-05-17 161335.png   → Member Panel - Tour Routes
+├── Ekran görüntüsü 2026-05-17 161517.png   → Member Panel - Active Reservations
+└── Ekran görüntüsü 2026-05-17 161538.png   → Member Panel - Reservation Detail
+```
+
